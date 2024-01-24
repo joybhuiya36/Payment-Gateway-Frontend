@@ -8,22 +8,25 @@ const cartCountSlice = createSlice({
   name: "cartCount",
   initialState,
   reducers: {
-    increase: (state, action) => {
+    increase: (state) => {
       state.count = state.count + 1;
     },
-    decrease: (state, action) => {
+    decrease: (state) => {
       state.count = state.count - 1;
     },
     decreaseMany: (state, action) => {
-      state.count -= action.payload;
+      if (state.count > 0) state.count -= action.payload;
     },
     countZero: (state, action) => {
       state.count = 0;
     },
+    setCount: (state, action) => {
+      state.count = action.payload;
+    },
   },
 });
 
-export const { increase, decrease, decreaseMany, countZero } =
+export const { increase, decrease, decreaseMany, countZero, setCount } =
   cartCountSlice.actions;
 
 export default cartCountSlice.reducer;

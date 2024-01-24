@@ -33,14 +33,17 @@
     font-weight: 800;
 }
 .book-cart__button {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
     margin: 0 35px;
     border-radius: 8px;
-    font-size: 16px;
     font-weight: 600;
     color: $solid-white;
     background-color: $forest-green;
     border: none;
-    padding: 15px;
+    padding: 10px 15px;
     cursor: pointer;
 
     &:hover {

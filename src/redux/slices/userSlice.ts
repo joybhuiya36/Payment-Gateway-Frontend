@@ -21,7 +21,7 @@ const userSlice = createSlice({
       state.address = action.payload.address;
       state.phone = action.payload.phone;
     },
-    userLogout: (state, action) => {
+    userLogout: (state) => {
       state.role = "";
       state.id = "";
       state.name = "";

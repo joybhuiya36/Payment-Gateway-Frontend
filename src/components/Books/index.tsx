@@ -3,28 +3,18 @@ import useBook from "@/customHooks/bookHook";
 import React, { useEffect } from "react";
 import BookCart from "../BookCart";
 import "./index.scss";
-import { useSelector } from "react-redux";
-import axiosIntance from "@/utils/axiosInstance";
-import { toast } from "react-toastify";
+import useCart from "@/customHooks/cartHooks";
 
 type Props = {};
 
 const Books = (props: Props) => {
   const { books, getAllBook } = useBook();
-  const userId = useSelector((state: any) => state.user.id);
+  const { addToCart } = useCart();
   useEffect(() => {
     getAllBook();
-  }, [books]);
+  }, []);
   const addtoCart = (id: string) => {
-    console.log(id);
-    axiosIntance
-      .post("/cart/addtocart", { bookId: id, quantity: 1 })
-      .then((res) => {
-        toast.success("Book is added to cart");
-      })
-      .catch((error) => {
-        toast.error("Failed to add to cart");
-      });
+    addToCart(id, 1);
   };
   return (
     <div className="books">

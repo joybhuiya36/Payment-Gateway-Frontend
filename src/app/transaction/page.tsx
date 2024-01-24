@@ -7,7 +7,7 @@ const UserTransaction = () => {
   const { allTrans, getAllTransaction } = useTransaction();
   useEffect(() => {
     getAllTransaction();
-  }, [allTrans]);
+  }, []);
   return (
     <div className="transPage">
       <h2>Transactions</h2>

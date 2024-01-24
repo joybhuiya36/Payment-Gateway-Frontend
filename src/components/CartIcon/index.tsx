@@ -1,13 +1,10 @@
 import { countZero } from "@/redux/slices/cartCountSlice";
 import React from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const CartIcon = () => {
-  // const count = useSelector((state) => state?.cartCount.count);
-  const count = 1;
-  const dispatch = useDispatch();
-  dispatch(countZero);
+  const count = useSelector((state: any) => state?.cartCount?.count);
   return (
     <div style={{ position: "relative" }}>
       <AiOutlineShoppingCart

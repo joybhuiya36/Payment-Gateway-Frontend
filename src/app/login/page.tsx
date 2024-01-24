@@ -5,7 +5,7 @@ import "./index.scss";
 import axiosIntance from "../../utils/axiosInstance";
 import { useDispatch } from "react-redux";
 import { userLoginInfo } from "../../redux/slices/userSlice";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
 
@@ -49,6 +49,7 @@ const Login = () => {
         address: response.data.data.user.address,
         phone: response.data.data.user.phone,
       };
+      console.log(info);
       dispatch(userLoginInfo(info));
       localStorage.setItem("token", token);
       axiosIntance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -86,7 +87,7 @@ const Login = () => {
                 <input
                   placeholder="abc@email.com"
                   {...field}
-                  style={{ border: errors.firstname ? "1px solid red" : "" }}
+                  style={{ border: errors.email ? "1px solid red" : "" }}
                 />
               )}
             />

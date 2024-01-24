@@ -1,28 +1,26 @@
 "use client";
 import React, { useState } from "react";
 import "./index.scss";
-import { useDispatch } from "react-redux";
-// import { increase, decrease } from "../../redux/slices/cartCountSlice";
-// import { addToCart, removeToCart } from "../../redux/slices/bookCartSlice";
+import useCart from "@/customHooks/cartHooks";
 
 type Props = {
-  _id: string;
+  id: string;
   title: string;
   price: number;
   image: string;
   quantity: number;
-  onRemove?: Function;
+  onRemove: Function;
 };
 const CartForCartPage = ({
+  id,
   title,
   price,
   image,
   quantity,
   onRemove,
 }: Props) => {
-  const dispatch = useDispatch();
   const [count, setCount] = useState(quantity);
-
+  const { addToCart, removeFromCart } = useCart();
   return (
     <div className="cart-for-cartpage">
       <div className="left">
@@ -32,39 +30,29 @@ const CartForCartPage = ({
         <h4>{title}</h4>
         <p>${price}</p>
         <div className="plusminus">
-          {/* <button
+          <button
             onClick={() => {
-              dispatch(decrease());
-              dispatch(removeToCart({ _id, price }));
+              removeFromCart(id, 1);
               setCount(count - 1);
             }}
             disabled={count == 0}
           >
             -
-          </button> */}
-          Quantity: {count}
-          {/* <button
+          </button>
+          {count}
+          <button
             onClick={() => {
-              dispatch(increase());
-              setCount(count + 1);
-              dispatch(
-                addToCart({
-                  _id,
-                  title,
-                  price,
-                  image,
-                })
-              );
+              addToCart(id, 1);
               setCount(count + 1);
             }}
           >
             +
-          </button> */}
+          </button>
         </div>
       </div>
-      {/* <span className="close" onClick={() => onRemove(_id, count, price)}>
+      <span className="close" onClick={() => onRemove(id, count)}>
         X
-      </span> */}
+      </span>
     </div>
   );
 };

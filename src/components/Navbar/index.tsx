@@ -17,7 +17,7 @@ const Navbar = (props: Props) => {
   const dispatch = useDispatch();
   const handleLogout = () => {
     console.log("logout");
-    dispatch(userLogout(0));
+    dispatch(userLogout());
     localStorage.removeItem("token");
     toast("Logged Out!");
     navigate.push("/");
@@ -38,20 +38,24 @@ const Navbar = (props: Props) => {
         Contact
       </Link>
       <div className="nav__right">
-        <span onClick={() => navigate.push("/cart")}>
-          <CartIcon />
-        </span>
-        <span
-          onClick={() => navigate.push("/transaction")}
-          style={{
-            color: "white",
-            fontSize: "1.5em",
-            paddingRight: "2em",
-            cursor: "pointer",
-          }}
-        >
-          <GrTransaction />
-        </span>
+        {isUser == 2 && (
+          <span onClick={() => navigate.push("/cart")}>
+            <CartIcon />
+          </span>
+        )}
+        {isUser && (
+          <span
+            onClick={() => navigate.push("/transaction")}
+            style={{
+              color: "white",
+              fontSize: "1.5em",
+              paddingRight: "2em",
+              cursor: "pointer",
+            }}
+          >
+            <GrTransaction />
+          </span>
+        )}
         {isUser && (
           <button className="nav__button" onClick={handleLogout}>
             Logout
